@@ -2,12 +2,15 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from loguru import logger
+from app.api.investigation import router as investigation_router
 
 app = FastAPI(
     title="AI Kubernetes Agent",
     description="AI-powered Kubernetes troubleshooting API",
     version="1.0.0",
+    
 )
+app.include_router(investigation_router)
 
 # Allow the frontend to communicate with the backend.
 app.add_middleware(
